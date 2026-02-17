@@ -49,6 +49,22 @@ const $ = (id) => {
 
 const fmtCurrency = new Intl.NumberFormat("it-IT", { style: "currency", currency: "EUR" });
 
+const APP_BASE_PATH = (() => {
+  if (typeof window === "undefined") return "";
+  const parts = String(window.location.pathname || "/")
+    .split("/")
+    .filter(Boolean);
+  const appFolder = "simulatorecontotermico-arquati.com";
+  const idx = parts.indexOf(appFolder);
+  if (idx <= 0) return "";
+  return `/${parts.slice(0, idx).join("/")}`;
+})();
+
+function withAppBase(path) {
+  const clean = String(path || "/");
+  return `${APP_BASE_PATH}${clean.startsWith("/") ? clean : `/${clean}`}`;
+}
+
 function normalizeForSearch(input) {
   return String(input || "")
     .trim()
@@ -77,6 +93,146 @@ function parseNumberLike(input) {
 
   const n = parseFloat(s);
   return Number.isFinite(n) ? n : 0;
+}
+
+function round2(n) {
+  return Math.round((n + Number.EPSILON) * 100) / 100;
+}
+
+function lerp(a, b, t) {
+  return a + (b - a) * t;
+}
+
+function interpolate(points, x) {
+  const v = parseNumberLike(x);
+  if (points.length === 0) return 1;
+  if (v <= points[0][0]) return points[0][1];
+  if (v >= points[points.length - 1][0]) return points[points.length - 1][1];
+
+  for (let i = 0; i < points.length - 1; i++) {
+    const [x0, y0] = points[i];
+    const [x1, y1] = points[i + 1];
+    if (v >= x0 && v <= x1) {
+      const t = (v - x0) / (x1 - x0);
+      return lerp(y0, y1, t);
+    }
+  }
+  return 1;
+}
+
+const PDC_K_ZONA = {
+  A: 116.09,
+  B: 164.47,
+  C: 212.84,
+  D: 270.88,
+  E: 328.93,
+  F: 348.28,
+};
+
+const IBRIDO_K_ZONA = {
+  A: 147.57,
+  B: 209.06,
+  C: 270.54,
+  D: 344.33,
+  E: 418.11,
+  F: 442.71,
+};
+
+const G_PDC_POINTS = [
+  [2.0, 0.6202],
+  [3.0, 0.8269],
+  [3.5, 0.886],
+  [4.0, 0.9303],
+  [5.16, 1.0],
+  [6.0, 1.0337],
+  [7.0, 1.0632],
+  [10.0, 1.1163],
+];
+
+const G_IBRIDO_POINTS = [
+  [2.0, 0.6931],
+  [3.0, 0.9241],
+  [3.5, 0.9901],
+  [3.59, 1.0],
+  [4.0, 1.0396],
+  [5.0, 1.1089],
+  [6.0, 1.1551],
+  [10.0, 1.2475],
+];
+
+function computeIncentiveForTipologia(tipologia, payload) {
+  const valueVat = payload?.value_vat?.[tipologia];
+  const totale_vat = parseNumberLike(valueVat);
+
+  const tipData = Array.isArray(payload?.dati_tecnici?.[tipologia]) ? payload.dati_tecnici[tipologia][0] || {} : {};
+  const zona = String(payload?.property?.address?.immobile?.zona_climatica || "E")
+    .trim()
+    .toUpperCase();
+
+  let incentivo_max = 0;
+  let percentuale = 0;
+
+  if (tipologia === "scaldacqua") {
+    percentuale = 0.4;
+    const cls = String(tipData?.classe_energetica || "")
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "");
+    incentivo_max = cls.startsWith("a+") ? 700 : cls.startsWith("a") ? 500 : 0;
+  } else if (tipologia === "solare_termico") {
+    percentuale = 0.65;
+    const energia = parseNumberLike(tipData?.energia_termica);
+    const tipo = String(tipData?.tipo_collettori || "").trim().toLowerCase();
+    const k = tipo === "piani" ? 0.7 : tipo === "factory_made" ? 0.1945 : 0;
+    incentivo_max = energia * k;
+  } else if (tipologia === "pompa_calore") {
+    percentuale = 0.65;
+    const potenza = parseNumberLike(tipData?.potenza_nominale);
+    const eff = parseNumberLike(tipData?.efficienza_stagionale) / 100;
+    const scop = parseNumberLike(tipData?.scop_sper_cop);
+    const kZona = PDC_K_ZONA[zona] || PDC_K_ZONA.E;
+    incentivo_max = potenza * eff * kZona * interpolate(G_PDC_POINTS, scop);
+  } else if (tipologia === "sistema_ibrido") {
+    percentuale = 0.65;
+    const potenza = parseNumberLike(tipData?.pdc_potenza);
+    const eff = parseNumberLike(tipData?.pdc_efficienza) / 100;
+    const scop = parseNumberLike(tipData?.pdc_scop_sper_cop);
+    const kZona = IBRIDO_K_ZONA[zona] || IBRIDO_K_ZONA.E;
+    incentivo_max = potenza * eff * kZona * interpolate(G_IBRIDO_POINTS, scop);
+  } else {
+    return {
+      totale_vat: round2(totale_vat),
+      incentivo_lordo: 0,
+      incentivo_netto: 0,
+      percent_reale: "0.0",
+      warnings: `Tipologia '${tipologia}' non implementata nel calcolo locale.`,
+    };
+  }
+
+  const incentivo_lordo = Math.min(incentivo_max, percentuale * totale_vat);
+  const incentivo_netto = incentivo_lordo * 0.9878;
+  const percent_reale = totale_vat > 0 ? (incentivo_lordo / totale_vat) * 100 : 0;
+
+  return {
+    totale_vat: round2(totale_vat),
+    incentivo_lordo: round2(incentivo_lordo),
+    incentivo_netto: round2(incentivo_netto),
+    percent_reale: percent_reale.toFixed(1),
+  };
+}
+
+function calculateLocally(payload) {
+  const tipologie = Array.isArray(payload?.intervention?.tipologia) ? payload.intervention.tipologia : [];
+  if (!tipologie.length) {
+    return { success: false, error: "Nessuna tipologia di intervento selezionata." };
+  }
+
+  const data = {};
+  for (const tip of tipologie) {
+    data[tip] = computeIncentiveForTipologia(tip, payload);
+  }
+
+  return { success: true, data };
 }
 
 function formatCurrency(n) {
@@ -154,6 +310,7 @@ const state = {
   activeIntervention: INTERVENTIONS[0],
   catalogs: new Map(), // catalogType -> array
   availableModels: [],
+  citiesCache: null,
   selectedModel: null,
   selectedCity: null,
   zonaClimatica: "E",
@@ -275,10 +432,30 @@ async function loadCatalogFor(intervention) {
   const cacheKey = intervention.catalogType;
   if (!state.catalogs.has(cacheKey)) {
     setStatus(null, "Caricamento modelli...");
-    const resp = await fetchJson(`/api/public/catalog/${encodeURIComponent(cacheKey)}/${encodeURIComponent(BRAND)}`);
-    const arr = Array.isArray(resp?.data) ? resp.data : [];
+    let arr = [];
+
+    try {
+      const resp = await fetchJson(
+        withAppBase(`/api/public/catalog/${encodeURIComponent(cacheKey)}/${encodeURIComponent(BRAND)}`),
+      );
+      arr = Array.isArray(resp?.data) ? resp.data : [];
+    } catch {
+      // Fallback per hosting statico (es. GitHub Pages).
+    }
+
+    if (!arr.length) {
+      try {
+        const fallback = await fetchJson(
+          withAppBase(`/arquati-server/data/catalog/${encodeURIComponent(cacheKey)}/${encodeURIComponent(BRAND)}.json`),
+        );
+        arr = Array.isArray(fallback) ? fallback : [];
+      } catch {
+        arr = [];
+      }
+    }
+
     state.catalogs.set(cacheKey, arr);
-    setStatus(null, "");
+    setStatus(arr.length ? null : "error", arr.length ? "" : "Nessun modello disponibile.");
   }
 
   const raw = state.catalogs.get(cacheKey) || [];
@@ -351,8 +528,37 @@ const updateModelSuggestions = debounce(() => {
 const updateComuneSuggestions = debounce(async () => {
   const q = normalizeForSearch(dom.comuneInput.value);
   try {
-    const resp = await fetchJson(`/api/public/cities?q=${encodeURIComponent(q)}`);
-    const arr = Array.isArray(resp) ? resp : [];
+    let arr = [];
+    try {
+      const resp = await fetchJson(withAppBase(`/api/public/cities?q=${encodeURIComponent(q)}`));
+      arr = Array.isArray(resp) ? resp : [];
+    } catch {
+      // Fallback per hosting statico (es. GitHub Pages).
+    }
+
+    if (!arr.length) {
+      if (!Array.isArray(state.citiesCache)) {
+        const allCities = await fetchJson(withAppBase("/arquati-server/data/geo/cities.json"));
+        state.citiesCache = Array.isArray(allCities) ? allCities : [];
+      }
+
+      const starts = [];
+      const contains = [];
+      const qn = normalizeForSearch(q);
+
+      for (const city of state.citiesCache) {
+        const cn = normalizeForSearch(city?.comune || "");
+        if (!qn) starts.push(city);
+        else if (cn.startsWith(qn)) starts.push(city);
+        else if (cn.includes(qn)) contains.push(city);
+      }
+
+      const sorter = (a, b) =>
+        String(a?.comune || "").localeCompare(String(b?.comune || ""), "it", { sensitivity: "base" });
+
+      arr = [...starts.sort(sorter), ...contains.sort(sorter)];
+    }
+
     renderSuggestions(
       dom.comuneSuggestions,
       arr.slice(0, 50),
@@ -420,15 +626,21 @@ async function calculate() {
 
   try {
     const payload = buildPayload();
-    const resp = await fetchJson("/api/public/calculate", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
+    let resp = null;
+    let usedLocalFallback = false;
 
-    if (!resp?.success) {
-      throw new Error(String(resp?.error || "Calcolo non riuscito"));
+    try {
+      resp = await fetchJson(withAppBase("/api/public/calculate"), {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch {
+      usedLocalFallback = true;
+      resp = calculateLocally(payload);
     }
+
+    if (!resp?.success) throw new Error(String(resp?.error || "Calcolo non riuscito"));
 
     const tipologia = state.activeIntervention.tipologia;
     const row = resp?.data?.[tipologia];
@@ -458,8 +670,11 @@ async function calculate() {
     // Auto-scroll to show results after a successful calculation.
     scrollIntoViewSmart(dom.results);
 
-    if (row.warnings) {
-      dom.warnings.textContent = String(row.warnings);
+    if (row.warnings || usedLocalFallback) {
+      const warn = [row.warnings, usedLocalFallback ? "Calcolo eseguito in modalità statica (senza API)." : null]
+        .filter(Boolean)
+        .join(" ");
+      dom.warnings.textContent = String(warn);
       dom.warnings.hidden = false;
     } else {
       dom.warnings.textContent = "";
