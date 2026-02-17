@@ -65,6 +65,11 @@ function withAppBase(path) {
   return `${APP_BASE_PATH}${clean.startsWith("/") ? clean : `/${clean}`}`;
 }
 
+function staticDataUrl(path) {
+  const clean = String(path || "").replace(/^\/+/, "");
+  return `./data/${clean}`;
+}
+
 function normalizeForSearch(input) {
   return String(input || "")
     .trim()
@@ -446,7 +451,7 @@ async function loadCatalogFor(intervention) {
     if (!arr.length) {
       try {
         const fallback = await fetchJson(
-          withAppBase(`/arquati-server/data/catalog/${encodeURIComponent(cacheKey)}/${encodeURIComponent(BRAND)}.json`),
+          staticDataUrl(`catalog/${encodeURIComponent(cacheKey)}/${encodeURIComponent(BRAND)}.json`),
         );
         arr = Array.isArray(fallback) ? fallback : [];
       } catch {
@@ -466,6 +471,10 @@ async function loadCatalogFor(intervention) {
     return la.localeCompare(lb, "it", { sensitivity: "base" });
   });
   state.availableModels = filtered;
+
+  if (document.activeElement === dom.modelInput || dom.modelInput.value.trim()) {
+    updateModelSuggestions();
+  }
 }
 
 function renderInterventions() {
@@ -538,7 +547,7 @@ const updateComuneSuggestions = debounce(async () => {
 
     if (!arr.length) {
       if (!Array.isArray(state.citiesCache)) {
-        const allCities = await fetchJson(withAppBase("/arquati-server/data/geo/cities.json"));
+        const allCities = await fetchJson(staticDataUrl("geo/cities.json"));
         state.citiesCache = Array.isArray(allCities) ? allCities : [];
       }
 
