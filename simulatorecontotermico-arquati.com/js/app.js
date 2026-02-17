@@ -367,8 +367,7 @@ function resolveCityZone(city) {
   const ggZone = zoneFromDegreeDays(city?.gradi_giorno);
   if (ggZone) return ggZone;
 
-  // Dataset attuale non include sempre la zona: fallback stabile per evitare stato incoerente.
-  return "E";
+  return null;
 }
 
 function applySelectedCity(city) {
@@ -376,11 +375,15 @@ function applySelectedCity(city) {
   dom.comuneInput.value = `${city.comune} (${city.codice_provincia || "-"})`;
 
   const z = resolveCityZone(city);
-  state.zonaClimatica = z;
-  dom.zonaSelect.value = z;
+  if (z) {
+    state.zonaClimatica = z;
+    dom.zonaSelect.value = z;
+  }
 
   const locationMeta = city.regione ? `${city.regione}${city.provincia ? `, ${city.provincia}` : ""}` : "";
-  dom.comuneMeta.textContent = locationMeta ? `${locationMeta} | Zona ${z}` : `Zona ${z}`;
+  dom.comuneMeta.textContent = locationMeta
+    ? `${locationMeta} | Zona ${state.zonaClimatica}`
+    : `Zona ${state.zonaClimatica}`;
   openSuggestions(dom.comuneSuggestions, false);
 }
 
