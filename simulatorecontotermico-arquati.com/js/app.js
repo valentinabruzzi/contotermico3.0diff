@@ -347,6 +347,43 @@ function clearComuneSelection() {
   openSuggestions(dom.comuneSuggestions, false);
 }
 
+function zoneFromDegreeDays(gg) {
+  const v = parseNumberLike(gg);
+  if (!v || v <= 0) return null;
+  if (v < 600) return "A";
+  if (v < 900) return "B";
+  if (v < 1400) return "C";
+  if (v < 2100) return "D";
+  if (v < 3000) return "E";
+  return "F";
+}
+
+function resolveCityZone(city) {
+  const z = String(city?.zona_climatica || "")
+    .trim()
+    .toUpperCase();
+  if (["A", "B", "C", "D", "E", "F"].includes(z)) return z;
+
+  const ggZone = zoneFromDegreeDays(city?.gradi_giorno);
+  if (ggZone) return ggZone;
+
+  // Dataset attuale non include sempre la zona: fallback stabile per evitare stato incoerente.
+  return "E";
+}
+
+function applySelectedCity(city) {
+  state.selectedCity = city;
+  dom.comuneInput.value = `${city.comune} (${city.codice_provincia || "-"})`;
+
+  const z = resolveCityZone(city);
+  state.zonaClimatica = z;
+  dom.zonaSelect.value = z;
+
+  const locationMeta = city.regione ? `${city.regione}${city.provincia ? `, ${city.provincia}` : ""}` : "";
+  dom.comuneMeta.textContent = locationMeta ? `${locationMeta} | Zona ${z}` : `Zona ${z}`;
+  openSuggestions(dom.comuneSuggestions, false);
+}
+
 function modelMetaLine(intervention, model) {
   const f = model?.fields || {};
   if (!intervention || !model) return "";
@@ -573,17 +610,7 @@ const updateComuneSuggestions = debounce(async () => {
       arr.slice(0, 50),
       (c) => String(c.comune || ""),
       (c) => String(c.codice_provincia || ""),
-      (c) => {
-        state.selectedCity = c;
-        dom.comuneInput.value = `${c.comune} (${c.codice_provincia || "-"})`;
-        const z = String(c.zona_climatica || "").toUpperCase();
-        if (["A", "B", "C", "D", "E", "F"].includes(z)) {
-          state.zonaClimatica = z;
-          dom.zonaSelect.value = z;
-        }
-        dom.comuneMeta.textContent = c.regione ? `${c.regione}${c.provincia ? `, ${c.provincia}` : ""}` : "";
-        openSuggestions(dom.comuneSuggestions, false);
-      },
+      (c) => applySelectedCity(c),
     );
   } catch (e) {
     // Do not fail hard while typing.
