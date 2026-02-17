@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" aria-hidden="true">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f8fafc"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111827" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#111827" stop-opacity="0.00"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Soft geometry, intentionally subtle -->
+  <path d="M -200 120 C 200 0, 520 40, 900 160 C 1200 255, 1420 240, 1820 120 L 1820 -200 L -200 -200 Z"
+        fill="url(#accent)"/>
+
+  <g fill="#111827" fill-opacity="0.05">
+    <circle cx="1320" cy="140" r="160"/>
+    <circle cx="1420" cy="220" r="60"/>
+    <circle cx="280" cy="240" r="120"/>
+    <circle cx="420" cy="320" r="50"/>
+  </g>
+
+  <g stroke="#111827" stroke-opacity="0.06" stroke-width="2" fill="none">
+    <path d="M 0 520 C 320 460, 520 500, 780 560 C 980 605, 1160 605, 1600 560"/>
+    <path d="M 0 600 C 340 540, 560 580, 820 640 C 1040 690, 1200 700, 1600 660"/>
+  </g>
+</svg>
+

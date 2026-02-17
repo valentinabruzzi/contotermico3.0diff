@@ -1,0 +1,1613 @@
+<!DOCTYPE html>
+<html lang="it">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="bKKS0dhRy6LI8iIw4wp34MgCG2apR3EQlzflN0fk">
+
+        <title>Simulatore Conto termico 3.0</title>
+
+        <!-- Scripts -->
+        <link rel="preload" as="style" href="build/assets/app-C2oLBMjW.css" /><link rel="modulepreload" as="script" href="build/assets/app-BlCP0EVR.js" /><link rel="modulepreload" as="script" href="build/assets/select-tooltip-3Qrtqz21.js" /><link rel="stylesheet" href="build/assets/app-C2oLBMjW.css" /><script type="module" src="build/assets/app-BlCP0EVR.js"></script>        
+                    <link rel="stylesheet" href="css/buyers/ariston.css">
+        
+                    <!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D0KSK994DJ"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D0KSK994DJ');
+</script>
+
+<!-- TermsFeed Cookie Consent -->
+<script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"light","language":"it","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false});
+});
+</script>
+<script async src="https://www.termsfeed.com/public/cookie-consent/4.1.0/cookie-consent-code.js"></script>
+<script async src="https://www.termsfeed.com/public-ping/cookie-consent/4.1.0/cookie-consent.js/simulatorecontotermico-ariston.it"></script>
+            </head>
+    <body class="font-sans antialiased bg-white text-gray-800">
+        
+        <div class="h-screen w-full overflow-y-auto flex flex-col">
+                            <header class="page-header py-4 border-b border-gray-200 bg-[#dc052e]">
+    <div class="max-w-7xl mx-auto px-2 md:px-4 xl:px-6  flex flex-col items-end">
+        <img src="images/ariston/logo.png" alt="Ariston" class="h-8 md:h-12 object-contain filter brightness-0 invert">    </div>
+</header>
+            
+            <main class="flex-grow">
+                <div class="max-w-7xl mx-auto px-2 md:px-4 xl:px-6 py-6">
+                    <div class="pt-10 pb-20">
+    <h1 class="text-[#dc052e] font-bold text-[40px]">
+        SIMULATORE CONTO TERMICO 3.0
+    </h1>
+    <p>
+        Utilizza il simulatore Ariston per scoprire qual è l’incentivo massimo ottenibile<br>
+        per il prodotto da installare.
+    </p>
+</div>
+        
+        <form id="simulatore-pubblico" method="POST" data-brand="ariston">
+            <input type="hidden" name="_token" value="bKKS0dhRy6LI8iIw4wp34MgCG2apR3EQlzflN0fk" autocomplete="off">            <div class="p-4 bg-white shadow-md rounded-lg overflow-hidden">
+
+    
+    
+    <div role="alert" x-data="{ show: true }" x-show="show" x-transition class="relative border-s-4 border-sky-700 bg-sky-100 p-4 mb-6">
+                    <button type="button" class="absolute right-3 top-2.5" @click="show = false"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5 text-sky-700"><path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" /></svg></button>
+                <div class="flex items-center gap-2">
+            <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='size-8 text-sky-700'><path stroke-linecap='round' stroke-linejoin='round' d='m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z' /></svg>
+            <div class="flex-1 pl-2">
+                <h3 class="-mt-0.5 block leading-tight font-bold text-lg text-sky-800"></h3>
+                <p class="mt-1 text-sm text-sky-700">
+                    NB: Calcolo dell’incentivo valido solo per soggetti privati non economici (persone fisiche).
+        <br>
+        Per tutte le altre casistiche rivolgersi all’assistenza clienti.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+    
+    <input type="hidden" name="intervention[tipologia][]" id="tipologia-attiva" value="sistema_ibrido">
+
+    <hr class="my-6 border-gray-300">
+
+    
+    <section class="tabs-container">
+        <div class="border-b border-gray-200 bg-white rounded-t-lg px-4 pt-2">
+            <style>
+                /* Tabs selected state */
+                #simulatore-tabs button[aria-selected="true"] {
+                    background-color: #ffffff;
+                    color: #608ad1; /* cornflower-blue-700 */
+                    border-color: #4a7bc8; /* cornflower-blue-500 */
+                }
+            </style>
+            <ul class="flex flex-col md:flex-row md:flex-wrap -mb-px text-sm font-medium text-center" id="simulatore-tabs" role="tablist">
+                
+                                <li class="mr-0 mb-2 md:mb-0 md:mr-3" role="presentation">
+                    <button class="inline-block p-2 border-b-2 border-transparent rounded-t-base hover:text-cornflower-blue-700 hover:border-cornflower-blue-500 cursor-pointer transition-colors duration-200 ease-in-out"
+                            id="sistema-ibrido-tab"
+                            type="button"
+                            role="tab"
+                            aria-controls="sistema-ibrido"
+                            aria-selected="true"
+                            data-tipologia="sistema_ibrido"
+                            data-catalog="sistema-ibrido">
+                        Sistemi ibridi <br><small>&nbsp;</small>
+                    </button>
+                </li>
+                
+                
+                                <li class="mr-0 mb-2 md:mb-0 md:mr-2" role="presentation">
+                    <button class="inline-block p-2 border-b-2 border-transparent rounded-t-base hover:text-cornflower-blue-700 hover:border-cornflower-blue-500 cursor-pointer transition-colors duration-200 ease-in-out"
+                            id="pompa-calore-tab"
+                            type="button"
+                            role="tab"
+                            aria-controls="pompa-calore"
+                            aria-selected="false"
+                            data-tipologia="pompa_calore"
+                            data-catalog="pompa-calore"
+                            data-subtype="riscaldamento">
+                        Pompe di calore <br><small>riscaldamento</small>
+                    </button>
+                </li>
+                
+                
+                                <li class="mr-0 mb-2 md:mb-0 md:mr-3" role="presentation">
+                    <button class="inline-block p-2 border-b-2 border-transparent rounded-t-base hover:text-cornflower-blue-700 hover:border-cornflower-blue-500 cursor-pointer transition-colors duration-200 ease-in-out"
+                            id="scaldacqua-tab"
+                            type="button"
+                            role="tab"
+                            aria-controls="scaldacqua"
+                            aria-selected="false"
+                            data-tipologia="scaldacqua"
+                            data-catalog="scaldacqua">
+                        Scaldacqua <br><small>a pompe di calore</small>
+                    </button>
+                </li>
+                
+                
+                                <li class="mr-0 mb-2 md:mb-0 md:mr-3" role="presentation">
+                    <button class="inline-block p-2 border-b-2 border-transparent rounded-t-base hover:text-cornflower-blue-700 hover:border-cornflower-blue-500 cursor-pointer transition-colors duration-200 ease-in-out"
+                            id="condizionatori-tab"
+                            type="button"
+                            role="tab"
+                            aria-controls="condizionatori"
+                            aria-selected="false"
+                            data-tipologia="pompa_calore"
+                            data-catalog="pompa-calore"
+                            data-subtype="condizionatore">
+                        Condizionatori <br><small>&nbsp;</small>
+                    </button>
+                </li>
+                
+                
+                                <li class="mr-0 mb-2 md:mb-0 md:mr-3" role="presentation">
+                    <button class="inline-block p-2 border-b-2 border-transparent rounded-t-base hover:text-cornflower-blue-700 hover:border-cornflower-blue-500 cursor-pointer transition-colors duration-200 ease-in-out"
+                            id="solare-termico-tab"
+                            type="button"
+                            role="tab"
+                            aria-controls="solare-termico"
+                            aria-selected="false"
+                            data-tipologia="solare_termico"
+                            data-catalog="solare-termico"
+                            data-subtype="factory">
+                        Solare termico <br><small>Sistema Factory Made</small>
+                    </button>
+                </li>
+                
+                
+                                <li class="mr-0 mb-2 md:mb-0 md:mr-3" role="presentation">
+                    <button class="inline-block p-2 border-b-2 border-transparent rounded-t-base hover:text-cornflower-blue-700 hover:border-cornflower-blue-500 cursor-pointer transition-colors duration-200 ease-in-out"
+                            id="pannelli-acs-tab"
+                            type="button"
+                            role="tab"
+                            aria-controls="pannelli-acs"
+                            aria-selected="false"
+                            data-tipologia="solare_termico"
+                            data-catalog="solare-termico"
+                            data-subtype="acs">
+                        Pannelli solari <br><small>Solo pannelli per ACS (no riscaldamento)</small>
+                    </button>
+                </li>
+                
+                
+                                <li class="mr-0 mb-2 md:mb-0 md:mr-3" role="presentation">
+                    <button class="inline-block p-2 border-b-2 border-transparent rounded-t-base hover:text-cornflower-blue-700 hover:border-cornflower-blue-500 cursor-pointer transition-colors duration-200 ease-in-out"
+                            id="pannelli-riscaldamento-tab"
+                            type="button"
+                            role="tab"
+                            aria-controls="pannelli-riscaldamento"
+                            aria-selected="false"
+                            data-tipologia="solare_termico"
+                            data-catalog="solare-termico"
+                            data-subtype="riscaldamento">
+                        Pannelli solari<br><small>ACS con Integrazione riscaldamento</small>
+                    </button>
+                </li>
+                            </ul>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-x-0 mt-6 bg-white rounded-lg shadow-sm border border-gray-200" id="simulatore-tabs-content">
+
+            
+                        <div class=" p-5 rounded-lg w-full md:w-3/4" id="sistema-ibrido" role="tabpanel" aria-labelledby="sistema-ibrido-tab">
+                <div class="repeater-container"
+     data-repeater-type="sistema-ibrido"
+     data-context="simulatore-pubblico"
+     data-brand="ariston"
+     data-readonly="false">
+
+    <div class="sistema-ibrido-repeater">
+
+                <div class="sistema-ibrido-item bg-white p-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 items-end">
+
+                
+                <div class="md:col-span-8">
+                    <div class="field-wrapper select-light flex flex-col justify-between h-full btn-select-model" data-field="modello" data-tipologia="sistema-ibrido">
+            <label for="dati_tecnici_sistema_ibrido__index__modello" class="block text-sm font-medium text-gray-600">Modello</label>
+        <div class="has-tooltip">
+                                    <select id="dati_tecnici_sistema_ibrido__index__modello" name="dati_tecnici[sistema_ibrido][index][modello]"
+            class=" disabled:cursor-not-allowed disabled:text-gray-800 disabled:bg-gray-200 disabled:opacity-60 mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border border-gray-200 text-gray-700 shadow-sm focus:ring-danube-400 focus:ring-opacity-80 "
+                                    class="btn-select-model" data-field="modello" data-tipologia="sistema-ibrido"
+        >
+                            <option value="">Seleziona un modello...</option>
+                                </select>
+                    </div>
+</div>
+
+                    
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__marca"
+        name="dati_tecnici[sistema_ibrido][0][marca]"
+        value=""
+        data-field="marca"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__modello"
+        name="dati_tecnici[sistema_ibrido][0][modello]"
+        value=""
+        data-field="modello"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pdc_alimentazione"
+        name="dati_tecnici[sistema_ibrido][0][pdc_alimentazione]"
+        value=""
+        data-field="pdc_alimentazione"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pdc_tipologia_scambio"
+        name="dati_tecnici[sistema_ibrido][0][pdc_tipologia_scambio]"
+        value=""
+        data-field="pdc_tipologia_scambio"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pdc_denominazione"
+        name="dati_tecnici[sistema_ibrido][0][pdc_denominazione]"
+        value=""
+        data-field="pdc_denominazione"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pdc_potenza"
+        name="dati_tecnici[sistema_ibrido][0][pdc_potenza]"
+        value=""
+        data-field="pdc_potenza"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pdc_efficienza"
+        name="dati_tecnici[sistema_ibrido][0][pdc_efficienza]"
+        value=""
+        data-field="pdc_efficienza"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pdc_scop_sper_cop"
+        name="dati_tecnici[sistema_ibrido][0][pdc_scop_sper_cop]"
+        value=""
+        data-field="pdc_scop_sper_cop"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pdc_emissione"
+        name="dati_tecnici[sistema_ibrido][0][pdc_emissione]"
+        value=""
+        data-field="pdc_emissione"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pdc_potenziale"
+        name="dati_tecnici[sistema_ibrido][0][pdc_potenziale]"
+        value=""
+        data-field="pdc_potenziale"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__caldaia_tipologia"
+        name="dati_tecnici[sistema_ibrido][0][caldaia_tipologia]"
+        value=""
+        data-field="caldaia_tipologia"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__caldaia_potenza"
+        name="dati_tecnici[sistema_ibrido][0][caldaia_potenza]"
+        value=""
+        data-field="caldaia_potenza"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__caldaia_rendimento"
+        name="dati_tecnici[sistema_ibrido][0][caldaia_rendimento]"
+        value=""
+        data-field="caldaia_rendimento"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__caldaia_efficienza"
+        name="dati_tecnici[sistema_ibrido][0][caldaia_efficienza]"
+        value=""
+        data-field="caldaia_efficienza"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_sistema_ibrido__0__pre_qualificati"
+        name="dati_tecnici[sistema_ibrido][0][pre_qualificati]"
+        value=""
+        
+    >
+                </div>
+
+                
+                <div class="md:col-span-4">
+                    <div class="field-wrapper " >
+                    <label for="value_vat_sistema_ibrido" class="block text-sm font-medium text-gray-700">Importo Fattura</label>
+                <div class="relative block">
+                                                                    <div class="flex items-center mt-2 px-2 w-full rounded-xs border border-gray-200 bg-white text-gray-700 shadow-sm  has-[input:focus-within]:ring has-[input:focus-within]:ring-danube-400 has-[input:focus-within]:ring-opacity-80 has-[input:read-only]:bg-gray-200 ">
+                    <div class="shrink-0 text-sm text-gray-500">&euro;</div>
+                    <input
+                        type="text"
+                        id="value_vat_sistema_ibrido"
+                        name="value_vat[sistema_ibrido]"
+                        value=""
+                         placeholder="0,00"                         class="read-only:pointer-events-none read-only:text-gray-800 read-only:bg-gray-200 read-only:opacity-60 text-sm block w-full bg-transparent border-none text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-0 min-w-0 grow pl-1.5 py-1.5 "
+                                                
+                    >
+                </div>
+                                </div>
+    </div>
+                </div>
+
+                
+                
+            </div>
+
+            
+            <div class="model-info mt-3 p-2 bg-gray-100 rounded text-sm text-gray-600 hidden">
+                <span class="font-medium">Dettagli:</span>
+                <span class="model-details"></span>
+            </div>
+
+        </div>
+        
+        
+    </div>
+
+</div>
+            </div>
+            
+            
+                        <div class="hidden p-5 rounded-lg w-full md:w-3/4" id="pompa-calore" role="tabpanel" aria-labelledby="pompa-calore-tab">
+                                <div class="repeater-container"
+     data-repeater-type="pompa-calore"
+     data-context="simulatore-pubblico"
+     data-brand="ariston"
+     data-readonly="false">
+
+    <div class="pompa-calore-repeater">
+
+        <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__tipo_dispositivo"
+        name="dati_tecnici[pompa_calore][tipo_dispositivo]"
+        value="riscaldamento"
+        
+    >
+
+                <div class="pompa-calore-item bg-white p-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 items-end">
+
+                
+                <div class="md:col-span-8">
+                    <div class="field-wrapper select-light flex flex-col justify-between h-full btn-select-model" data-field="modello" data-tipologia="pompa-calore" data-tipo-dispositivo="riscaldamento">
+            <label for="dati_tecnici_pompa_calore__index__modello" class="block text-sm font-medium text-gray-600">Modello</label>
+        <div class="has-tooltip">
+                                    <select id="dati_tecnici_pompa_calore__index__modello" name="dati_tecnici[pompa_calore][index][modello]"
+            class=" disabled:cursor-not-allowed disabled:text-gray-800 disabled:bg-gray-200 disabled:opacity-60 mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border border-gray-200 text-gray-700 shadow-sm focus:ring-danube-400 focus:ring-opacity-80 "
+                                    class="btn-select-model" data-field="modello" data-tipologia="pompa-calore" data-tipo-dispositivo="riscaldamento"
+        >
+                            <option value="">Seleziona un modello...</option>
+                                </select>
+                    </div>
+</div>
+
+                    
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__marca"
+        name="dati_tecnici[pompa_calore][0][marca]"
+        value=""
+        data-field="marca"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__tipologia_funzionamento"
+        name="dati_tecnici[pompa_calore][0][tipologia_funzionamento]"
+        value=""
+        data-field="tipologia_funzionamento"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__tipologia_scambio"
+        name="dati_tecnici[pompa_calore][0][tipologia_scambio]"
+        value=""
+        data-field="tipologia_scambio"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__nome_commerciale"
+        name="dati_tecnici[pompa_calore][0][nome_commerciale]"
+        value=""
+        data-field="nome_commerciale"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__potenza_nominale"
+        name="dati_tecnici[pompa_calore][0][potenza_nominale]"
+        value=""
+        data-field="potenza_nominale"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__efficienza_stagionale"
+        name="dati_tecnici[pompa_calore][0][efficienza_stagionale]"
+        value=""
+        data-field="efficienza_stagionale"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__scop_sper_cop"
+        name="dati_tecnici[pompa_calore][0][scop_sper_cop]"
+        value=""
+        data-field="scop_sper_cop"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__emissione_nox"
+        name="dati_tecnici[pompa_calore][0][emissione_nox]"
+        value=""
+        data-field="emissione_nox"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__potenziale_gwp"
+        name="dati_tecnici[pompa_calore][0][potenziale_gwp]"
+        value=""
+        data-field="potenziale_gwp"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__pre_qualificati"
+        name="dati_tecnici[pompa_calore][0][pre_qualificati]"
+        value=""
+        
+    >
+                </div>
+
+                
+                <div class="md:col-span-4">
+                    <div class="field-wrapper " >
+                    <label for="value_vat_pompa_calore" class="block text-sm font-medium text-gray-700">Importo Fattura</label>
+                <div class="relative block">
+                                                                    <div class="flex items-center mt-2 px-2 w-full rounded-xs border border-gray-200 bg-white text-gray-700 shadow-sm  has-[input:focus-within]:ring has-[input:focus-within]:ring-danube-400 has-[input:focus-within]:ring-opacity-80 has-[input:read-only]:bg-gray-200 ">
+                    <div class="shrink-0 text-sm text-gray-500">&euro;</div>
+                    <input
+                        type="text"
+                        id="value_vat_pompa_calore"
+                        name="value_vat[pompa_calore]"
+                        value=""
+                         placeholder="0,00"                         class="read-only:pointer-events-none read-only:text-gray-800 read-only:bg-gray-200 read-only:opacity-60 text-sm block w-full bg-transparent border-none text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-0 min-w-0 grow pl-1.5 py-1.5 "
+                                                
+                    >
+                </div>
+                                </div>
+    </div>
+                </div>
+
+                
+                
+            </div>
+
+            
+            <div class="model-info mt-3 p-2 bg-gray-100 rounded text-sm text-gray-600 hidden">
+                <span class="font-medium">Dettagli:</span>
+                <span class="model-details"></span>
+            </div>
+
+        </div>
+        
+        
+    </div>
+
+</div>
+            </div>
+            
+            
+                        <div class="hidden p-5 rounded-lg w-full md:w-3/4" id="scaldacqua" role="tabpanel" aria-labelledby="scaldacqua-tab">
+                <div class="repeater-container"
+     data-repeater-type="scaldacqua"
+     data-context="simulatore-pubblico"
+     data-brand="ariston"
+     data-readonly="false">
+
+    <div class="scaldacqua-repeater">
+
+                <div class="scaldacqua-item bg-white p-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 items-end">
+
+                
+                <div class="md:col-span-8">
+                    <div class="field-wrapper select-light flex flex-col justify-between h-full btn-select-model" data-field="modello" data-tipologia="scaldacqua">
+            <label for="dati_tecnici_scaldacqua__index__modello" class="block text-sm font-medium text-gray-600">Modello</label>
+        <div class="has-tooltip">
+                                    <select id="dati_tecnici_scaldacqua__index__modello" name="dati_tecnici[scaldacqua][index][modello]"
+            class=" disabled:cursor-not-allowed disabled:text-gray-800 disabled:bg-gray-200 disabled:opacity-60 mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border border-gray-200 text-gray-700 shadow-sm focus:ring-danube-400 focus:ring-opacity-80 "
+                                    class="btn-select-model" data-field="modello" data-tipologia="scaldacqua"
+        >
+                            <option value="">Seleziona un modello...</option>
+                                </select>
+                    </div>
+</div>
+
+                    
+                    <input
+        type="hidden"
+        id="dati_tecnici_scaldacqua__0__marca"
+        name="dati_tecnici[scaldacqua][0][marca]"
+        value=""
+        data-field="marca"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_scaldacqua__0__classe_energetica"
+        name="dati_tecnici[scaldacqua][0][classe_energetica]"
+        value=""
+        data-field="classe_energetica"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_scaldacqua__0__capacita_accumulo"
+        name="dati_tecnici[scaldacqua][0][capacita_accumulo]"
+        value=""
+        data-field="capacita_accumulo"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_scaldacqua__0__pre_qualificati"
+        name="dati_tecnici[scaldacqua][0][pre_qualificati]"
+        value=""
+        
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_scaldacqua__0__costo_unitario"
+        name="dati_tecnici[scaldacqua][0][costo_unitario]"
+        value=""
+        
+    >
+                </div>
+
+                
+                <div class="md:col-span-4">
+                    <div class="field-wrapper " >
+                    <label for="value_vat_scaldacqua" class="block text-sm font-medium text-gray-700">Importo Fattura</label>
+                <div class="relative block">
+                                                                    <div class="flex items-center mt-2 px-2 w-full rounded-xs border border-gray-200 bg-white text-gray-700 shadow-sm  has-[input:focus-within]:ring has-[input:focus-within]:ring-danube-400 has-[input:focus-within]:ring-opacity-80 has-[input:read-only]:bg-gray-200 ">
+                    <div class="shrink-0 text-sm text-gray-500">&euro;</div>
+                    <input
+                        type="text"
+                        id="value_vat_scaldacqua"
+                        name="value_vat[scaldacqua]"
+                        value=""
+                         placeholder="0,00"                         class="read-only:pointer-events-none read-only:text-gray-800 read-only:bg-gray-200 read-only:opacity-60 text-sm block w-full bg-transparent border-none text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-0 min-w-0 grow pl-1.5 py-1.5 "
+                                                
+                    >
+                </div>
+                                </div>
+    </div>
+                </div>
+
+                
+                
+            </div>
+
+            
+            <div class="model-info mt-3 p-2 bg-gray-100 rounded text-sm text-gray-600 hidden">
+                <span class="font-medium">Dettagli:</span>
+                <span class="model-details"></span>
+            </div>
+
+        </div>
+        
+        
+    </div>
+
+</div>
+            </div>
+            
+            
+                        <div class="hidden p-5 rounded-lg w-full md:w-3/4" id="condizionatori" role="tabpanel" aria-labelledby="condizionatori-tab">
+                                <div class="repeater-container"
+     data-repeater-type="pompa-calore"
+     data-context="simulatore-pubblico"
+     data-brand="ariston"
+     data-readonly="false">
+
+    <div class="pompa-calore-repeater">
+
+        <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__tipo_dispositivo"
+        name="dati_tecnici[pompa_calore][tipo_dispositivo]"
+        value="condizionatore"
+        
+    >
+
+                <div class="pompa-calore-item bg-white p-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 items-end">
+
+                
+                <div class="md:col-span-8">
+                    <div class="field-wrapper select-light flex flex-col justify-between h-full btn-select-model" data-field="modello" data-tipologia="pompa-calore" data-tipo-dispositivo="condizionatore">
+            <label for="dati_tecnici_pompa_calore__index__modello" class="block text-sm font-medium text-gray-600">Modello</label>
+        <div class="has-tooltip">
+                                    <select id="dati_tecnici_pompa_calore__index__modello" name="dati_tecnici[pompa_calore][index][modello]"
+            class=" disabled:cursor-not-allowed disabled:text-gray-800 disabled:bg-gray-200 disabled:opacity-60 mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border border-gray-200 text-gray-700 shadow-sm focus:ring-danube-400 focus:ring-opacity-80 "
+                                    class="btn-select-model" data-field="modello" data-tipologia="pompa-calore" data-tipo-dispositivo="condizionatore"
+        >
+                            <option value="">Seleziona un modello...</option>
+                                </select>
+                    </div>
+</div>
+
+                    
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__marca"
+        name="dati_tecnici[pompa_calore][0][marca]"
+        value=""
+        data-field="marca"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__tipologia_funzionamento"
+        name="dati_tecnici[pompa_calore][0][tipologia_funzionamento]"
+        value=""
+        data-field="tipologia_funzionamento"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__tipologia_scambio"
+        name="dati_tecnici[pompa_calore][0][tipologia_scambio]"
+        value=""
+        data-field="tipologia_scambio"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__nome_commerciale"
+        name="dati_tecnici[pompa_calore][0][nome_commerciale]"
+        value=""
+        data-field="nome_commerciale"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__potenza_nominale"
+        name="dati_tecnici[pompa_calore][0][potenza_nominale]"
+        value=""
+        data-field="potenza_nominale"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__efficienza_stagionale"
+        name="dati_tecnici[pompa_calore][0][efficienza_stagionale]"
+        value=""
+        data-field="efficienza_stagionale"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__scop_sper_cop"
+        name="dati_tecnici[pompa_calore][0][scop_sper_cop]"
+        value=""
+        data-field="scop_sper_cop"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__emissione_nox"
+        name="dati_tecnici[pompa_calore][0][emissione_nox]"
+        value=""
+        data-field="emissione_nox"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__potenziale_gwp"
+        name="dati_tecnici[pompa_calore][0][potenziale_gwp]"
+        value=""
+        data-field="potenziale_gwp"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_pompa_calore__0__pre_qualificati"
+        name="dati_tecnici[pompa_calore][0][pre_qualificati]"
+        value=""
+        
+    >
+                </div>
+
+                
+                <div class="md:col-span-4">
+                    <div class="field-wrapper " >
+                    <label for="value_vat_pompa_calore" class="block text-sm font-medium text-gray-700">Importo Fattura</label>
+                <div class="relative block">
+                                                                    <div class="flex items-center mt-2 px-2 w-full rounded-xs border border-gray-200 bg-white text-gray-700 shadow-sm  has-[input:focus-within]:ring has-[input:focus-within]:ring-danube-400 has-[input:focus-within]:ring-opacity-80 has-[input:read-only]:bg-gray-200 ">
+                    <div class="shrink-0 text-sm text-gray-500">&euro;</div>
+                    <input
+                        type="text"
+                        id="value_vat_pompa_calore"
+                        name="value_vat[pompa_calore]"
+                        value=""
+                         placeholder="0,00"                         class="read-only:pointer-events-none read-only:text-gray-800 read-only:bg-gray-200 read-only:opacity-60 text-sm block w-full bg-transparent border-none text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-0 min-w-0 grow pl-1.5 py-1.5 "
+                                                
+                    >
+                </div>
+                                </div>
+    </div>
+                </div>
+
+                
+                
+            </div>
+
+            
+            <div class="model-info mt-3 p-2 bg-gray-100 rounded text-sm text-gray-600 hidden">
+                <span class="font-medium">Dettagli:</span>
+                <span class="model-details"></span>
+            </div>
+
+        </div>
+        
+        
+    </div>
+
+</div>
+            </div>
+            
+            
+                        <div class="hidden p-5 rounded-lg w-full md:w-3/4" id="solare-termico" role="tabpanel" aria-labelledby="solare-termico-tab">
+                                <div class="repeater-container"
+     data-repeater-type="solare-termico"
+     data-context="simulatore-pubblico"
+     data-brand="ariston"
+     data-readonly="false">
+
+    <div class="solare-termico-repeater">
+
+        <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__tipo_dispositivo"
+        name="dati_tecnici[solare_termico][tipo_dispositivo]"
+        value="factory"
+        
+    >
+
+                <div class="solare-termico-item bg-white p-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 items-end">
+
+                
+                <div class="md:col-span-8">
+                    <div class="field-wrapper select-light flex flex-col justify-between h-full btn-select-model" data-field="modello" data-tipologia="solare-termico" data-tipo-dispositivo="factory">
+            <label for="dati_tecnici_solare_termico__index__modello" class="block text-sm font-medium text-gray-600">Modello</label>
+        <div class="has-tooltip">
+                                    <select id="dati_tecnici_solare_termico__index__modello" name="dati_tecnici[solare_termico][index][modello]"
+            class=" disabled:cursor-not-allowed disabled:text-gray-800 disabled:bg-gray-200 disabled:opacity-60 mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border border-gray-200 text-gray-700 shadow-sm focus:ring-danube-400 focus:ring-opacity-80 "
+                                    class="btn-select-model" data-field="modello" data-tipologia="solare-termico" data-tipo-dispositivo="factory"
+        >
+                            <option value="">Seleziona un modello...</option>
+                                </select>
+                    </div>
+</div>
+
+                    
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__marca"
+        name="dati_tecnici[solare_termico][0][marca]"
+        value=""
+        data-field="marca"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__tipo_collettori"
+        name="dati_tecnici[solare_termico][0][tipo_collettori]"
+        value=""
+        data-field="tipo_collettori"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__utilizzo"
+        name="dati_tecnici[solare_termico][0][utilizzo]"
+        value=""
+        data-field="utilizzo"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__solar_cooling"
+        name="dati_tecnici[solare_termico][0][solar_cooling]"
+        value="no"
+        data-field="solar_cooling"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__area_ag"
+        name="dati_tecnici[solare_termico][0][area_ag]"
+        value=""
+        data-field="area_ag"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__area_aa"
+        name="dati_tecnici[solare_termico][0][area_aa]"
+        value=""
+        data-field="area_aa"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__numero_collettori"
+        name="dati_tecnici[solare_termico][0][numero_collettori]"
+        value="1"
+        data-field="numero_collettori"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__energia_termica"
+        name="dati_tecnici[solare_termico][0][energia_termica]"
+        value=""
+        data-field="energia_termica"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__producibilita"
+        name="dati_tecnici[solare_termico][0][producibilita]"
+        value=""
+        data-field="producibilita"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__numero_moduli"
+        name="dati_tecnici[solare_termico][0][numero_moduli]"
+        value="1"
+        data-field="numero_moduli"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__pre_qualificati"
+        name="dati_tecnici[solare_termico][0][pre_qualificati]"
+        value=""
+        
+    >
+                </div>
+
+                
+                <div class="md:col-span-4">
+                    <div class="field-wrapper " >
+                    <label for="value_vat_solare_termico" class="block text-sm font-medium text-gray-700">Importo Fattura</label>
+                <div class="relative block">
+                                                                    <div class="flex items-center mt-2 px-2 w-full rounded-xs border border-gray-200 bg-white text-gray-700 shadow-sm  has-[input:focus-within]:ring has-[input:focus-within]:ring-danube-400 has-[input:focus-within]:ring-opacity-80 has-[input:read-only]:bg-gray-200 ">
+                    <div class="shrink-0 text-sm text-gray-500">&euro;</div>
+                    <input
+                        type="text"
+                        id="value_vat_solare_termico"
+                        name="value_vat[solare_termico]"
+                        value=""
+                         placeholder="0,00"                         class="read-only:pointer-events-none read-only:text-gray-800 read-only:bg-gray-200 read-only:opacity-60 text-sm block w-full bg-transparent border-none text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-0 min-w-0 grow pl-1.5 py-1.5 "
+                                                
+                    >
+                </div>
+                                </div>
+    </div>
+                </div>
+
+                
+                
+            </div>
+
+            
+            <div class="model-info mt-3 p-2 bg-gray-100 rounded text-sm text-gray-600 hidden">
+                <span class="font-medium">Dettagli:</span>
+                <span class="model-details"></span>
+            </div>
+
+        </div>
+        
+        
+    </div>
+
+</div>
+            </div>
+            
+            
+                        <div class="hidden p-5 rounded-lg w-full md:w-3/4" id="pannelli-acs" role="tabpanel" aria-labelledby="pannelli-acs-tab">
+                                <div class="repeater-container"
+     data-repeater-type="solare-termico"
+     data-context="simulatore-pubblico"
+     data-brand="ariston"
+     data-readonly="false">
+
+    <div class="solare-termico-repeater">
+
+        <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__tipo_dispositivo"
+        name="dati_tecnici[solare_termico][tipo_dispositivo]"
+        value="acs"
+        
+    >
+
+                <div class="solare-termico-item bg-white p-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 items-end">
+
+                
+                <div class="md:col-span-8">
+                    <div class="field-wrapper select-light flex flex-col justify-between h-full btn-select-model" data-field="modello" data-tipologia="solare-termico" data-tipo-dispositivo="acs">
+            <label for="dati_tecnici_solare_termico__index__modello" class="block text-sm font-medium text-gray-600">Modello</label>
+        <div class="has-tooltip">
+                                    <select id="dati_tecnici_solare_termico__index__modello" name="dati_tecnici[solare_termico][index][modello]"
+            class=" disabled:cursor-not-allowed disabled:text-gray-800 disabled:bg-gray-200 disabled:opacity-60 mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border border-gray-200 text-gray-700 shadow-sm focus:ring-danube-400 focus:ring-opacity-80 "
+                                    class="btn-select-model" data-field="modello" data-tipologia="solare-termico" data-tipo-dispositivo="acs"
+        >
+                            <option value="">Seleziona un modello...</option>
+                                </select>
+                    </div>
+</div>
+
+                    
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__marca"
+        name="dati_tecnici[solare_termico][0][marca]"
+        value=""
+        data-field="marca"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__tipo_collettori"
+        name="dati_tecnici[solare_termico][0][tipo_collettori]"
+        value=""
+        data-field="tipo_collettori"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__utilizzo"
+        name="dati_tecnici[solare_termico][0][utilizzo]"
+        value=""
+        data-field="utilizzo"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__solar_cooling"
+        name="dati_tecnici[solare_termico][0][solar_cooling]"
+        value="no"
+        data-field="solar_cooling"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__area_ag"
+        name="dati_tecnici[solare_termico][0][area_ag]"
+        value=""
+        data-field="area_ag"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__area_aa"
+        name="dati_tecnici[solare_termico][0][area_aa]"
+        value=""
+        data-field="area_aa"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__numero_collettori"
+        name="dati_tecnici[solare_termico][0][numero_collettori]"
+        value="1"
+        data-field="numero_collettori"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__energia_termica"
+        name="dati_tecnici[solare_termico][0][energia_termica]"
+        value=""
+        data-field="energia_termica"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__producibilita"
+        name="dati_tecnici[solare_termico][0][producibilita]"
+        value=""
+        data-field="producibilita"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__numero_moduli"
+        name="dati_tecnici[solare_termico][0][numero_moduli]"
+        value="1"
+        data-field="numero_moduli"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__pre_qualificati"
+        name="dati_tecnici[solare_termico][0][pre_qualificati]"
+        value=""
+        
+    >
+                </div>
+
+                
+                <div class="md:col-span-4">
+                    <div class="field-wrapper " >
+                    <label for="value_vat_solare_termico" class="block text-sm font-medium text-gray-700">Importo Fattura</label>
+                <div class="relative block">
+                                                                    <div class="flex items-center mt-2 px-2 w-full rounded-xs border border-gray-200 bg-white text-gray-700 shadow-sm  has-[input:focus-within]:ring has-[input:focus-within]:ring-danube-400 has-[input:focus-within]:ring-opacity-80 has-[input:read-only]:bg-gray-200 ">
+                    <div class="shrink-0 text-sm text-gray-500">&euro;</div>
+                    <input
+                        type="text"
+                        id="value_vat_solare_termico"
+                        name="value_vat[solare_termico]"
+                        value=""
+                         placeholder="0,00"                         class="read-only:pointer-events-none read-only:text-gray-800 read-only:bg-gray-200 read-only:opacity-60 text-sm block w-full bg-transparent border-none text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-0 min-w-0 grow pl-1.5 py-1.5 "
+                                                
+                    >
+                </div>
+                                </div>
+    </div>
+                </div>
+
+                
+                
+            </div>
+
+            
+            <div class="model-info mt-3 p-2 bg-gray-100 rounded text-sm text-gray-600 hidden">
+                <span class="font-medium">Dettagli:</span>
+                <span class="model-details"></span>
+            </div>
+
+        </div>
+        
+        
+    </div>
+
+</div>
+            </div>
+            
+            
+                        <div class="hidden p-5 rounded-lg w-full md:w-3/4" id="pannelli-riscaldamento" role="tabpanel" aria-labelledby="pannelli-riscaldamento-tab">
+                                <div class="repeater-container"
+     data-repeater-type="solare-termico"
+     data-context="simulatore-pubblico"
+     data-brand="ariston"
+     data-readonly="false">
+
+    <div class="solare-termico-repeater">
+
+        <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__tipo_dispositivo"
+        name="dati_tecnici[solare_termico][tipo_dispositivo]"
+        value="riscaldamento"
+        
+    >
+
+                <div class="solare-termico-item bg-white p-4">
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-x-8 items-end">
+
+                
+                <div class="md:col-span-8">
+                    <div class="field-wrapper select-light flex flex-col justify-between h-full btn-select-model" data-field="modello" data-tipologia="solare-termico" data-tipo-dispositivo="riscaldamento">
+            <label for="dati_tecnici_solare_termico__index__modello" class="block text-sm font-medium text-gray-600">Modello</label>
+        <div class="has-tooltip">
+                                    <select id="dati_tecnici_solare_termico__index__modello" name="dati_tecnici[solare_termico][index][modello]"
+            class=" disabled:cursor-not-allowed disabled:text-gray-800 disabled:bg-gray-200 disabled:opacity-60 mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border border-gray-200 text-gray-700 shadow-sm focus:ring-danube-400 focus:ring-opacity-80 "
+                                    class="btn-select-model" data-field="modello" data-tipologia="solare-termico" data-tipo-dispositivo="riscaldamento"
+        >
+                            <option value="">Seleziona un modello...</option>
+                                </select>
+                    </div>
+</div>
+
+                    
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__marca"
+        name="dati_tecnici[solare_termico][0][marca]"
+        value=""
+        data-field="marca"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__tipo_collettori"
+        name="dati_tecnici[solare_termico][0][tipo_collettori]"
+        value=""
+        data-field="tipo_collettori"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__utilizzo"
+        name="dati_tecnici[solare_termico][0][utilizzo]"
+        value=""
+        data-field="utilizzo"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__solar_cooling"
+        name="dati_tecnici[solare_termico][0][solar_cooling]"
+        value="no"
+        data-field="solar_cooling"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__area_ag"
+        name="dati_tecnici[solare_termico][0][area_ag]"
+        value=""
+        data-field="area_ag"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__area_aa"
+        name="dati_tecnici[solare_termico][0][area_aa]"
+        value=""
+        data-field="area_aa"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__numero_collettori"
+        name="dati_tecnici[solare_termico][0][numero_collettori]"
+        value="1"
+        data-field="numero_collettori"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__energia_termica"
+        name="dati_tecnici[solare_termico][0][energia_termica]"
+        value=""
+        data-field="energia_termica"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__producibilita"
+        name="dati_tecnici[solare_termico][0][producibilita]"
+        value=""
+        data-field="producibilita"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__numero_moduli"
+        name="dati_tecnici[solare_termico][0][numero_moduli]"
+        value="1"
+        data-field="numero_moduli"
+    >
+                    <input
+        type="hidden"
+        id="dati_tecnici_solare_termico__0__pre_qualificati"
+        name="dati_tecnici[solare_termico][0][pre_qualificati]"
+        value=""
+        
+    >
+                </div>
+
+                
+                <div class="md:col-span-4">
+                    <div class="field-wrapper " >
+                    <label for="value_vat_solare_termico" class="block text-sm font-medium text-gray-700">Importo Fattura</label>
+                <div class="relative block">
+                                                                    <div class="flex items-center mt-2 px-2 w-full rounded-xs border border-gray-200 bg-white text-gray-700 shadow-sm  has-[input:focus-within]:ring has-[input:focus-within]:ring-danube-400 has-[input:focus-within]:ring-opacity-80 has-[input:read-only]:bg-gray-200 ">
+                    <div class="shrink-0 text-sm text-gray-500">&euro;</div>
+                    <input
+                        type="text"
+                        id="value_vat_solare_termico"
+                        name="value_vat[solare_termico]"
+                        value=""
+                         placeholder="0,00"                         class="read-only:pointer-events-none read-only:text-gray-800 read-only:bg-gray-200 read-only:opacity-60 text-sm block w-full bg-transparent border-none text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-0 min-w-0 grow pl-1.5 py-1.5 "
+                                                
+                    >
+                </div>
+                                </div>
+    </div>
+                </div>
+
+                
+                
+            </div>
+
+            
+            <div class="model-info mt-3 p-2 bg-gray-100 rounded text-sm text-gray-600 hidden">
+                <span class="font-medium">Dettagli:</span>
+                <span class="model-details"></span>
+            </div>
+
+        </div>
+        
+        
+    </div>
+
+</div>
+            </div>
+            
+            <div class="p-5 w-full md:w-1/4 md:pl-0">
+                
+                <style>
+    #property_immobile-comune-suggestions {
+        background-color: var(--color-gray-100);
+        color: var(--color-gray-800);
+        border-color: var(--color-gray-300);
+        border-radius: var(--radius-xs);
+        margin-top: calc(var(--spacing) * 0.5);
+    }
+</style>
+
+<div class="md:col-span-3 p-4 pl-0" data-geo-search="global">
+    <input class="address-entity" type="hidden" name="addressed[]" value="property">
+    <input class="address-context" type="hidden" value="property_immobile">
+
+    
+    <label class="block text-sm font-medium text-gray-600"
+           id="comune-field-wrapper"
+           data-hide-for="scaldacqua,solare-termico,pannelli-acs,pannelli-riscaldamento"
+           for="property_immobile_comune">
+        Comune
+        <div class="field-wrapper flex flex-col justify-between h-full " autocomplete="off">
+                <div class="relative block">
+                                                                    <input
+                    type="text"
+                    id="property_immobile_comune"
+                    name="property[address][immobile][comune]"
+                    value=""
+                                        class="read-only:pointer-events-none read-only:text-gray-800 read-only:bg-gray-200 read-only:opacity-60 read-only:focus:border-gray-200 read-only:focus:ring-transparent mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border-gray-200 text-gray-700 placeholder-gray-500 shadow-sm focus:border-danube-300 focus:ring focus:ring-danube-300 focus:ring-opacity-50 "
+                                        autocomplete="off"
+                >
+                                </div>
+    </div>
+    </label>
+
+    
+    <input
+        type="hidden"
+        id="property_immobile_regione"
+        name="property[address][immobile][regione]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_provincia"
+        name="property[address][immobile][provincia]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_codice_provincia"
+        name="property[address][immobile][codice_provincia]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_codice_stato"
+        name="property[address][immobile][codice_stato]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_stato"
+        name="property[address][immobile][stato]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_altitudine"
+        name="property[address][immobile][altitudine]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_lat"
+        name="property[address][immobile][lat]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_lng"
+        name="property[address][immobile][lng]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_gradi_giorno"
+        name="property[address][immobile][gradi_giorno]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_codice_belfiore"
+        name="property[address][immobile][codice_belfiore]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_zona_climatica"
+        name="property[address][immobile][zona_climatica]"
+        value=""
+        
+    >
+    <input
+        type="hidden"
+        id="property_immobile_abitanti"
+        name="property[address][immobile][abitanti]"
+        value=""
+        
+    >
+</div>
+
+
+<div
+    x-data="{
+        show: false,
+        focusables() {
+            // All focusable element types...
+            let selector = 'a, button, input:not([type=\'hidden\']), textarea, select, details, [tabindex]:not([tabindex=\'-1\'])'
+            return [...$el.querySelectorAll(selector)]
+                // All non-disabled elements...
+                .filter(el => ! el.hasAttribute('disabled'))
+        },
+        firstFocusable() { return this.focusables()[0] },
+        lastFocusable() { return this.focusables().slice(-1)[0] },
+        nextFocusable() { return this.focusables()[this.nextFocusableIndex()] || this.firstFocusable() },
+        prevFocusable() { return this.focusables()[this.prevFocusableIndex()] || this.lastFocusable() },
+        nextFocusableIndex() { return (this.focusables().indexOf(document.activeElement) + 1) % (this.focusables().length + 1) },
+        prevFocusableIndex() { return Math.max(0, this.focusables().indexOf(document.activeElement)) -1 },
+    }"
+    x-init="$watch('show', value => {
+        if (value) {
+            document.body.classList.add('overflow-y-hidden');
+            setTimeout(() =&gt; firstFocusable().focus(), 100)
+        } else {
+            document.body.classList.remove('overflow-y-hidden');
+        }
+    })"
+    x-on:open-modal.window="$event.detail == 'select-climatic-zone-property_immobile' ? show = true : null"
+    x-on:close-modal.window="$event.detail == 'select-climatic-zone-property_immobile' ? show = false : null"
+    x-on:close.stop="show = false"
+    x-on:keydown.escape.window="show = false"
+    x-on:keydown.tab.prevent="$event.shiftKey || nextFocusable().focus()"
+    x-on:keydown.shift.tab.prevent="prevFocusable().focus()"
+    x-show="show"
+    class="fixed inset-0 overflow-y-auto px-4 py-6 sm:px-0 z-50"
+    style="display: none;"
+>
+    <div
+        x-show="show"
+        class="fixed inset-0 transform transition-all"
+        x-on:click="show = false"
+        x-transition:enter="ease-out duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="ease-in duration-200"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+    >
+        <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+    </div>
+
+    <div
+        x-show="show"
+        class="relative mb-6 bg-gray-800 overflow-hidden shadow-xl transform transition-all sm:w-full sm:max-w-lg rounded-sm sm:mx-auto"
+        x-transition:enter="ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+        x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+        x-transition:leave="ease-in duration-200"
+        x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+        x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+    >
+        <div class="p-6 bg-white">
+        <header class="modal-title mb-6">
+            <h2 class="text-xl text-center font-medium text-gray-700">
+                Seleziona la zona climatica
+            </h2>
+        </header>
+
+        <section class="modal-body pb-6 text-gray-500">
+            <p class="mb-3 text-sm text-justify">
+                Il comune <strong id="dual-zone-city-property_immobile" class="text-gray-700"></strong> ha due zone climatiche. Seleziona la zona appropriata per procedere.
+            </p>
+                            <div class="field-wrapper select-light flex flex-col justify-between h-full " >
+            <label for="dual-zone-select-property_immobile" class="block text-sm font-medium text-gray-600">Zona Climatica</label>
+        <div class="has-tooltip">
+                                    <select id="dual-zone-select-property_immobile" name="dual-zone-select"
+            class=" disabled:cursor-not-allowed disabled:text-gray-800 disabled:bg-gray-200 disabled:opacity-60 mt-2 py-1.5 text-sm block w-full rounded-xs bg-white border border-gray-200 text-gray-700 shadow-sm focus:ring-danube-400 focus:ring-opacity-80 "
+                                    
+        >
+                            <option value="">Seleziona zona climatica...</option>
+                                </select>
+                    </div>
+</div>
+                    </section>
+
+        <footer class="flex justify-end gap-2 p-4 pb-0 border-t border-gray-300">
+            <button type="button"  class="inline-flex items-center cursor-pointer font-semibold tracking-wide focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-150 bg-white border border-gray-300 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 active:bg-gray-200 focus:ring-stone-300 px-4 py-2 rounded-sm text-xs uppercase" @click="$dispatch('close-modal', 'select-climatic-zone-property_immobile')" @click="$dispatch('close-modal', 'select-climatic-zone-property_immobile')">
+        Annulla
+    </button>
+
+                <button type="button"  id="confirm-dual-zone-property_immobile"  class="inline-flex items-center cursor-pointer font-semibold tracking-wide focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-150 bg-green-600 border border-transparent text-white hover:bg-green-700 focus:bg-green-700 active:bg-green-900 focus:ring-green-800 px-4 py-2 rounded-sm text-xs uppercase" >
+        Conferma
+    </button>
+
+        </footer>
+    </div>
+    </div>
+</div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="my-6 border-gray-300">
+
+    
+    <section class="dati-simulatore">
+        <div class="mt-4 p-4 bg-gray-50 rounded border border-gray-200">
+            <div id="results-container">
+    
+    <div id="results-placeholder" class="text-center py-8 text-gray-500">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-12 h-12 mx-auto mb-3 text-gray-400">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 15.75V18m-7.5-6.75h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V13.5Zm0 2.25h.008v.008H8.25v-.008Zm0 2.25h.008v.008H8.25V18Zm2.498-6.75h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V13.5Zm0 2.25h.007v.008h-.007v-.008Zm0 2.25h.007v.008h-.007V18Zm2.504-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5Zm0 2.25h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V18Zm2.498-6.75h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V13.5ZM8.25 6h7.5v2.25h-7.5V6ZM12 2.25c-1.892 0-3.758.11-5.593.322C5.307 2.7 4.5 3.65 4.5 4.757V19.5a2.25 2.25 0 0 0 2.25 2.25h10.5a2.25 2.25 0 0 0 2.25-2.25V4.757c0-1.108-.806-2.057-1.907-2.185A48.507 48.507 0 0 0 12 2.25Z" />
+        </svg>
+        <p>Compila il modulo e premi <strong>Calcola Incentivo</strong> per visualizzare i risultati.</p>
+    </div>
+
+    
+    <div id="results-loading" class="text-center py-8 hidden">
+        <svg class="animate-spin h-8 w-8 mx-auto text-cornflower-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <p class="mt-2 text-gray-600">Calcolo in corso...</p>
+    </div>
+
+    
+    <div id="results-error" class="hidden p-4 bg-red-50 border border-red-200 rounded">
+        <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-red-500 mr-2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+            </svg>
+            <span id="results-error-message" class="text-red-700"></span>
+        </div>
+    </div>
+
+    
+    <div id="results-table" class="hidden overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-700">
+            <thead class="text-xs text-gray-100 uppercase bg-cornflower-blue-600">
+                <tr>
+                    <th scope="col" class="px-4 py-3">Tipologia Intervento</th>
+                    <th scope="col" class="px-4 py-3 text-right">Importo Fattura</th>
+                    <th scope="col" class="px-4 py-3 text-right">
+                        Incentivo Lordo
+                        <div class="has-tooltip inline-block ml-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke-width="1.15" stroke="currentColor" class="size-3.5 text-gray-200"><path stroke-linecap="round" stroke-linejoin="round" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" /></svg>
+                            <span class="tooltip tooltip-bottom font-light normal-case text-xs">&Egrave; il valore dell&rsquo;incentivo calcolato secondo le regole del GSE, al lordo delle trattenute.</span>
+                        </div>
+                    </th>
+                    <th scope="col" class="px-4 py-3 text-right">
+                        Incentivo Netto
+                        <div class="has-tooltip inline-block ml-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke-width="1.15" stroke="currentColor" class="size-3.5 text-gray-200"><path stroke-linecap="round" stroke-linejoin="round" d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z" /></svg>
+                            <span class="tooltip tooltip-bottom font-light normal-case text-xs">&Egrave; l&rsquo;incentivo al netto del corrispettivo dovuto al GSE.</span>
+                        </div>
+                    </th>
+                    <th scope="col" class="px-4 py-3 text-right">Percentuale</th>
+                </tr>
+            </thead>
+            <tbody id="results-body">
+                
+            </tbody>
+            <!--<tfoot class="bg-gray-100 font-semibold">
+                <tr>
+                    <td class="px-4 py-3">TOTALE</td>
+                    <td id="total-importo" class="px-4 py-3 text-right">&euro; 0,00</td>
+                    <td id="total-lordo" class="px-4 py-3 text-right">&euro; 0,00</td>
+                    <td id="total-netto" class="px-4 py-3 text-right">&euro; 0,00</td>
+                    <td class="px-4 py-3"></td>
+                </tr>
+            </tfoot>-->
+        </table>
+
+        
+                <div id="results-warnings" class="hidden">
+            <div id="simulator-warnings-container" class="bg-amber-100 border border-amber-400 text-amber-700 px-3 py-2 text-sm rounded relative mt-4 w-auto hidden" role="alert">
+    <div class="mb-1 ml-0">
+                    
+                        
+                        <div id="simulator-warnings-pompa_calore" class="flex gap-x-3 gap-y-2 hidden">
+                <label class="font-semibold italic w-64">Pompa di Calore:</label>
+                <p class="warnings-message"></p>
+            </div>
+            <hr id="separator-warnings-pompa_calore" class="mt-3 mb-2 border-dashed border-amber-300 w-7/8 mx-auto hidden">
+                    
+                        
+                        <div id="simulator-warnings-scaldacqua" class="flex gap-x-3 gap-y-2 hidden">
+                <label class="font-semibold italic w-64">Scaldacqua a Pompa di Calore:</label>
+                <p class="warnings-message"></p>
+            </div>
+            <hr id="separator-warnings-scaldacqua" class="mt-3 mb-2 border-dashed border-amber-300 w-7/8 mx-auto hidden">
+                    
+                        
+                        <div id="simulator-warnings-sistema_ibrido" class="flex gap-x-3 gap-y-2 hidden">
+                <label class="font-semibold italic w-64">Sistema Ibrido Factory Made:</label>
+                <p class="warnings-message"></p>
+            </div>
+            <hr id="separator-warnings-sistema_ibrido" class="mt-3 mb-2 border-dashed border-amber-300 w-7/8 mx-auto hidden">
+                    
+                        
+                        <div id="simulator-warnings-solare_termico" class="flex gap-x-3 gap-y-2 hidden">
+                <label class="font-semibold italic w-64">Solare Termico:</label>
+                <p class="warnings-message"></p>
+            </div>
+            <hr id="separator-warnings-solare_termico" class="mt-3 mb-2 border-dashed border-amber-300 w-7/8 mx-auto hidden">
+            </div>
+</div>
+        </div>
+
+        
+        <div class="mt-4 p-3 bg-gray-100 rounded text-xs text-gray-600">
+            <strong>Nota:</strong> I valori mostrati sono indicativi e calcolati per soggetti privati non economici.
+            Per calcoli personalizzati o per beneficiari diversi (imprese, enti pubblici, etc.), contattare l'assistenza.
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
+
+</div>
+
+
+            <div class="px-2 sm:px-3 md:px-4 lg:px-6 xl:px-8 py-4 flex justify-end gap-6 items-center">
+                <button type="button"  id="calcola-incentivo"  class="inline-flex items-center cursor-pointer font-semibold tracking-wide focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-150 bg-sky-500 border border-transparent text-white hover:bg-sky-600 focus:bg-sky-600 active:bg-sky-800 focus:ring-sky-700 px-4 py-2 rounded-sm text-xs uppercase" >
+        Calcola Incentivo
+    </button>
+
+            </div>
+        </form>
+    </div>
+            </main>
+
+                            <footer class="page-footer bg-black text-white py-8 mt-auto">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+        <div class="text-sm">
+            &copy; 2026 Ariston Group
+        </div>
+        <div class="mt-4 md:mt-0">
+            <a href="index.html#" id="open_preferences_center" class="text-white underline text-sm hover:text-gray-300 transition-colors">Gestisci cookie</a>
+        </div>
+    </div>
+</footer>
+                    </div>
+
+                <script>
+            document.addEventListener('submit', function (e) {
+                const submitter = e.submitter;
+                if (!submitter) return;
+
+                // Se il button specifica un formmethod="POST", rimuoviamo il _method
+                if (submitter.getAttribute('formmethod') === 'POST') {
+                    const form = e.target;
+                    const methodInput = form.querySelector('input[name="_method"]');
+                    if (methodInput) methodInput.remove();
+                }
+            });
+        </script>
+        <link rel="modulepreload" as="script" href="build/assets/simulatore-pubblico-BJT8G0N2.js" /><link rel="modulepreload" as="script" href="build/assets/forms-BesdW-TN.js" /><link rel="modulepreload" as="script" href="build/assets/api-DMeO4uTB.js" /><link rel="modulepreload" as="script" href="build/assets/dom-BI66pLWo.js" /><script type="module" src="build/assets/simulatore-pubblico-BJT8G0N2.js"></script>    <link rel="modulepreload" as="script" href="build/assets/address-rHcP3GSC.js" /><link rel="modulepreload" as="script" href="build/assets/api-DMeO4uTB.js" /><link rel="modulepreload" as="script" href="build/assets/autocomplete-BEBxn4Ja.js" /><script type="module" src="build/assets/address-rHcP3GSC.js"></script>    </body>
+</html>

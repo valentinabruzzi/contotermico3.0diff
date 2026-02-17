@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Simulatore Conto Termico 3.0 | Arquati</title>
+
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="css/buyers/arquati.css?v=5" />
+    <link rel="stylesheet" href="css/app.css?v=11" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <a class="brand" href="/" aria-label="Arquati">
+          <img
+            class="brand-logo"
+            src="images/arquati/logo.svg?v=2"
+            alt="Arquati"
+            width="220"
+            height="48"
+            loading="eager"
+          />
+        </a>
+        <div class="header-right">
+          <span class="pill">Simulatore Conto Termico 3.0</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="hero" aria-label="Introduzione">
+        <h1>Simulatore Conto Termico 3.0</h1>
+        <p>
+          Inserisci pochi dati e scopri l’incentivo massimo ottenibile per il prodotto da installare.
+        </p>
+        <div class="note" role="note">
+          <strong>NB:</strong> calcolo indicativo valido solo per soggetti privati non economici (persone fisiche).
+          <br />
+          Per tutte le altre casistiche rivolgersi all’assistenza clienti.
+        </div>
+      </section>
+
+      <section class="simulator card" id="simulator" aria-label="Simulatore">
+        <div class="sim-grid">
+          <aside class="sim-nav" aria-label="Intervento">
+            <div class="section-title">Intervento</div>
+            <div class="interventions" id="interventions" aria-label="Tipologie intervento"></div>
+          </aside>
+
+          <div class="sim-main" aria-label="Dati intervento">
+            <div class="sim-section">
+              <div class="section-title">Modello</div>
+              <div class="field" id="modelField">
+                <label for="modelInput">Modello</label>
+                <div class="combo">
+                  <input
+                    id="modelInput"
+                    type="text"
+                    inputmode="search"
+                    autocomplete="off"
+                    spellcheck="false"
+                    placeholder="Cerca un modello"
+                  />
+                  <button class="icon-btn" type="button" id="clearModelBtn" aria-label="Svuota modello">
+                    <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+                      <path
+                        d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </button>
+                </div>
+                <div
+                  class="suggestions"
+                  id="modelSuggestions"
+                  role="listbox"
+                  aria-label="Suggerimenti modello"
+                ></div>
+                <p class="helper" id="modelMeta"></p>
+              </div>
+            </div>
+
+            <div class="sim-section">
+              <div class="section-title">Dati</div>
+              <div class="grid-2">
+                <div class="field">
+                  <label for="invoiceInput">Importo fattura (IVA inclusa)</label>
+                  <input
+                    id="invoiceInput"
+                    type="text"
+                    inputmode="decimal"
+                    autocomplete="off"
+                    placeholder="Es. 3.000"
+                  />
+                  <p class="helper">Inserisci l’importo totale in euro.</p>
+                </div>
+
+                <div class="field" id="comuneField">
+                  <label for="comuneInput">Comune</label>
+                  <div class="combo">
+                    <input
+                      id="comuneInput"
+                      type="text"
+                      inputmode="search"
+                      autocomplete="off"
+                      spellcheck="false"
+                      placeholder="Cerca un comune"
+                    />
+                    <button class="icon-btn" type="button" id="clearComuneBtn" aria-label="Svuota comune">
+                      <svg viewBox="0 0 20 20" width="18" height="18" aria-hidden="true">
+                        <path
+                          d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                  <div
+                    class="suggestions"
+                    id="comuneSuggestions"
+                    role="listbox"
+                    aria-label="Suggerimenti comune"
+                  ></div>
+
+                  <div class="zone-row">
+                    <label for="zonaSelect">Zona climatica</label>
+                    <select id="zonaSelect" aria-label="Zona climatica">
+                      <option value="A">A</option>
+                      <option value="B">B</option>
+                      <option value="C">C</option>
+                      <option value="D">D</option>
+                      <option value="E" selected>E</option>
+                      <option value="F">F</option>
+                    </select>
+                  </div>
+                  <p class="helper" id="comuneMeta"></p>
+                </div>
+              </div>
+
+	              <div class="actions">
+	                <button class="btn" type="button" id="calculateBtn">Calcola incentivo</button>
+	                <div class="status" id="status" aria-live="polite"></div>
+	              </div>
+	            </div>
+
+	            <div class="sim-section" id="results" aria-label="Risultati" hidden>
+	              <div class="results-bar">
+	                <div class="section-title section-title--inline">Risultati</div>
+	                <button class="btn btn-ghost" type="button" id="resetBtn">Nuova simulazione</button>
+	              </div>
+
+	              <div class="table-wrap">
+	                <table aria-label="Tabella risultati">
+	                  <thead>
+	                    <tr>
+	                      <th>Tipologia intervento</th>
+	                      <th>Importo fattura</th>
+	                      <th>Incentivo lordo</th>
+	                      <th>Incentivo netto</th>
+	                      <th>Percentuale</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody id="resultsBody"></tbody>
+	                </table>
+	              </div>
+
+	              <div class="warnings" id="warnings" hidden></div>
+	            </div>
+	          </div>
+	        </div>
+	      </section>
+
+      <footer class="footer" aria-label="Footer">
+        <div>
+          I valori mostrati sono indicativi e dipendono dai dati inseriti. Per calcoli personalizzati o beneficiari
+          diversi (imprese, enti pubblici, ecc.), contattare l’assistenza.
+        </div>
+      </footer>
+    </main>
+
+    <script type="module" src="js/app.js?v=8"></script>
+  </body>
+</html>

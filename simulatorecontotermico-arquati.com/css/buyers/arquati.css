@@ -1,0 +1,85 @@
+/* Arquati Buyer CSS */
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400&display=swap");
+
+:root {
+    /* Brand */
+    --arquati-red-50: #fff1f2;
+    --arquati-red-100: #ffe4e6;
+    --arquati-red-200: #fecdd3;
+    --arquati-red-300: #fda4af;
+    --arquati-red-400: #fb7185;
+    --arquati-red-500: #dc052e;
+    --arquati-red-600: #c40428;
+    --arquati-red-700: #a00321;
+    --arquati-red-800: #7a021a;
+
+    /* Typography */
+    --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+    /*
+     * Theme overrides (remove ALL blues): Tailwind v4 uses CSS color variables.
+     * We remap the palette keys used by the UI (sky, danube, cornflower-blue) to Arquati red.
+     */
+    --color-sky-100: var(--arquati-red-50);
+    --color-sky-200: var(--arquati-red-100);
+    --color-sky-300: var(--arquati-red-200);
+    --color-sky-400: var(--arquati-red-400);
+    --color-sky-500: var(--arquati-red-500);
+    --color-sky-600: var(--arquati-red-600);
+    --color-sky-700: var(--arquati-red-700);
+    --color-sky-800: var(--arquati-red-800);
+
+    --color-danube-100: var(--arquati-red-50);
+    --color-danube-200: var(--arquati-red-100);
+    --color-danube-300: var(--arquati-red-200);
+    --color-danube-400: var(--arquati-red-400);
+    --color-danube-500: var(--arquati-red-500);
+    --color-danube-600: var(--arquati-red-600);
+    --color-danube-700: var(--arquati-red-700);
+    --color-danube-800: var(--arquati-red-800);
+
+    --color-cornflower-blue-400: var(--arquati-red-400);
+    --color-cornflower-blue-500: var(--arquati-red-500);
+    --color-cornflower-blue-600: var(--arquati-red-600);
+    --color-cornflower-blue-700: var(--arquati-red-700);
+}
+
+body {
+    background-image: url('../../images/arquati/background.svg');
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% auto;
+}
+
+/* Override colore header e titolo senza ricompilare Tailwind */
+.page-header {
+    /* Il logo Arquati e' scuro/rosso: meglio su sfondo chiaro. */
+    background-color: #ffffff !important;
+}
+
+/* Fix a few hard-coded blues inside vendor CSS (Choices.js styles are not purely variable-driven). */
+.bg-sky-600\\/20 {
+    background-color: rgba(220, 5, 46, 0.2) !important;
+}
+
+.bg-danube-600\\/20 {
+    background-color: rgba(220, 5, 46, 0.2) !important;
+}
+
+.select-light .choices__inner:focus,
+.select-light .choices[data-type*="select-one"].is-open .choices__inner,
+.btn-select-model .choices__inner:focus,
+.btn-select-model .choices[data-type*="select-one"].is-open .choices__inner {
+    border-color: var(--arquati-red-500) !important;
+}
+
+.choices[data-type*="select-one"] .choices__button:focus {
+    box-shadow: 0 0 0 2px rgba(220, 5, 46, 0.35) !important;
+}
+
+.choices__list--multiple .choices__item {
+    background-color: var(--arquati-red-600) !important;
+    border-color: var(--arquati-red-700) !important;
+}
